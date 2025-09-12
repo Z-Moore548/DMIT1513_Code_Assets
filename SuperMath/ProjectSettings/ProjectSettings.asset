@@ -4,7 +4,7 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 28
-  productGUID: ab429356c6fcd614cb0101e0e44362d7
+  productGUID: ede79257dfaaec14eac58d395d471d90
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
@@ -13,7 +13,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: DefaultCompany
-  productName: Lights Out
+  productName: SuperMath
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -520,10 +520,7 @@ PlayerSettings:
       m_Height: 720
       m_Kind: 1
       m_SubKind: 
-  m_BuildTargetBatching:
-  - m_BuildTarget: Standalone
-    m_StaticBatching: 1
-    m_DynamicBatching: 0
+  m_BuildTargetBatching: []
   m_BuildTargetShaderSettings: []
   m_BuildTargetGraphicsJobs: []
   m_BuildTargetGraphicsJobMode: []
@@ -845,14 +842,14 @@ PlayerSettings:
   editorAssembliesCompatibilityLevel: 1
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
-  metroPackageName: Lights Out
+  metroPackageName: SuperMath
   metroPackageVersion: 
   metroCertificatePath: 
   metroCertificatePassword: 
   metroCertificateSubject: 
   metroCertificateIssuer: 
   metroCertificateNotAfter: 0000000000000000
-  metroApplicationDescription: Lights Out
+  metroApplicationDescription: SuperMath
   wsaImages: {}
   metroTileShortName: 
   metroTileShowName: 0
@@ -923,10 +920,10 @@ PlayerSettings:
   captureStartupLogs: {}
   activeInputHandler: 1
   windowsGamepadBackendHint: 0
-  cloudProjectId: d787f2d2-1caf-4645-ba3d-c63c2c147c51
+  cloudProjectId: 9d62ce50-558e-47a5-961c-558898e9c861
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: Lights Out
+  projectName: SuperMath
   organizationId: lolburgur
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
