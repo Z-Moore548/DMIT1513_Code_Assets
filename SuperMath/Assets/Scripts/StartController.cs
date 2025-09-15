@@ -22,4 +22,8 @@ public class StartController : MonoBehaviour
     {
         anim.SetBool("NextPanel", false);
     }
+    public void Quit()
+    {
+        Application.Quit();
+    }
 }
