@@ -8,11 +8,13 @@ public class GameManger : MonoBehaviour
     [SerializeField] private int weapon;
     [SerializeField] private string planetName;
     [SerializeField] private int picture;
+    [SerializeField] float volume;
 
     public string CharacterName { get => characterName; set => characterName = value; }
     public int Weapon { get => weapon; set => weapon = value; }
     public string PlanetName { get => planetName; set => planetName = value; }
     public int Picture { get => picture; set => picture = value; }
+    public float Volume { get => volume; set => volume = value; }
 
     void Awake()
     {
@@ -25,5 +27,6 @@ public class GameManger : MonoBehaviour
             Destroy(this.gameObject);
         }
         DontDestroyOnLoad(this.gameObject);
+        Volume = 1;
     }
 }
