@@ -66,9 +66,10 @@ public class TankControls : MonoBehaviour
         if (Keyboard.current.spaceKey.isPressed && !fired) //will alwyas fire forward game space, not in relation to cannon
         {
             //intanstiate and add force to an object
-            GameObject Projectile = Instantiate(ballPrefab);
+            GameObject Projectile = Instantiate(ballPrefab, cannon.transform);
             Projectile.transform.position = shoot.transform.position;
-            Projectile.GetComponent<Rigidbody>().AddForce(Vector3.forward * 100, ForceMode.Impulse);
+            Projectile.transform.rotation = turret.transform.rotation;
+            Projectile.GetComponent<Rigidbody>().AddRelativeForce(Vector3.forward * 100, ForceMode.Impulse);
             fired = true;
         }
         if (Keyboard.current.rKey.isPressed)
