@@ -6,19 +6,30 @@ public class TankControls : MonoBehaviour
     [SerializeField] float movementSpeed = 3.0f, rotationSpeed = 100.0f, angleSpeed, forwardValue, backValue, rightValue, leftValue;
     [SerializeField] GameObject turret, cannon, shoot;
     [SerializeField] GameObject ballPrefab;
-    private bool fired;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    
     void Start()
     {
         
     }
-
-    void FixedUpdate()
+    void Update()
     {
         if (Keyboard.current.escapeKey.wasPressedThisFrame)
         {
             Application.Quit();
         }
+        //shoot
+        if (Keyboard.current.spaceKey.wasPressedThisFrame) //will alwyas fire forward game space, not in relation to cannon
+        {
+            //intanstiate and add force to an object
+            GameObject Projectile = Instantiate(ballPrefab, cannon.transform);
+            Projectile.transform.position = shoot.transform.position;
+            Projectile.transform.rotation = turret.transform.rotation;
+            Projectile.GetComponent<Rigidbody>().AddRelativeForce(Vector3.forward * 100, ForceMode.Impulse);
+        }
+    }
+    void FixedUpdate()
+    {
+        
 
         //Keyboard Control
         if (Keyboard.current.wKey.isPressed)
@@ -62,20 +73,6 @@ public class TankControls : MonoBehaviour
             cannon.transform.Rotate(Vector3.right * angleSpeed * Time.fixedDeltaTime);
         }
 
-        //Shoot
-        if (Keyboard.current.spaceKey.isPressed && !fired) //will alwyas fire forward game space, not in relation to cannon
-        {
-            //intanstiate and add force to an object
-            GameObject Projectile = Instantiate(ballPrefab, cannon.transform);
-            Projectile.transform.position = shoot.transform.position;
-            Projectile.transform.rotation = turret.transform.rotation;
-            Projectile.GetComponent<Rigidbody>().AddRelativeForce(Vector3.forward * 100, ForceMode.Impulse);
-            fired = true;
-        }
-        if (Keyboard.current.rKey.isPressed)
-        {
-            fired = false;
-        }
         //Gamepad Controls!
         // forwardValue = Gamepad.current.leftStick.up.value;
         // backValue = Gamepad.current.leftStick.down.value;
