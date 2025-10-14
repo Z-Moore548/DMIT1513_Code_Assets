@@ -19,7 +19,10 @@ public class FrontLoaderControls : MonoBehaviour
     void Update()
     {
         moveValues = moveAction.ReadValue<Vector2>();
-       
+        if (Keyboard.current.escapeKey.isPressed)
+        {
+            Application.Quit();
+        }
         
     }
     void FixedUpdate()
@@ -27,8 +30,8 @@ public class FrontLoaderControls : MonoBehaviour
         rb.AddRelativeForce(Vector3.forward * moveValues.y * forceMove * Time.fixedDeltaTime);
         rb.AddRelativeTorque(Vector3.up * moveValues.x * forceTurn * Time.fixedDeltaTime);
 
-        angles = arms.transform.rotation.eulerAngles;
-        bucketAngle = bucket.transform.rotation.eulerAngles;
+        angles = arms.transform.localRotation.eulerAngles;
+        bucketAngle = bucket.transform.localRotation.eulerAngles;
         //Arms rotation
         if (Keyboard.current.uKey.isPressed)// need to make clamps for this and the bucket
         {
@@ -42,7 +45,7 @@ public class FrontLoaderControls : MonoBehaviour
         {
             if (angles.x > 25 && angles.x < 180)
             {
-                arms.transform.localRotation = Quaternion.Euler(35, 0, 0);
+                arms.transform.localRotation = Quaternion.Euler(25, 0, 0);
             }
             arms.transform.Rotate(Vector3.right * armSpeed * Time.fixedDeltaTime);
         }
@@ -50,19 +53,20 @@ public class FrontLoaderControls : MonoBehaviour
         //Bucket Rotation
         if (Keyboard.current.iKey.isPressed)
         {
-            if(bucketAngle.x < 320 && bucketAngle.x > 180)
+            if (bucketAngle.x < 320 && bucketAngle.x > 180)
             {
-                bucket.transform.rotation = Quaternion.Euler(-40, 0, 0);
+                bucket.transform.localRotation = Quaternion.Euler(-40, 0, 0);
             }
             bucket.transform.Rotate(Vector3.left * bucketSpeed * Time.fixedDeltaTime);
         }
         if (Keyboard.current.kKey.isPressed)
         {
-            if(bucketAngle.x > 50 && bucketAngle.x < 180)
+            if (bucketAngle.x > 70 && bucketAngle.x < 180)
             {
-                bucket.transform.rotation = Quaternion.Euler(50, 0, 0);
+                bucket.transform.localRotation = Quaternion.Euler(70, 0, 0);
             }
             bucket.transform.Rotate(Vector3.right * bucketSpeed * Time.fixedDeltaTime);
         }
     }
+    
 }
