@@ -4,7 +4,7 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 28
-  productGUID: f5e5875648db10a4a99e69c8cc49fc0f
+  productGUID: 314b0f281fe2fc94d865e09e05e69a61
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
@@ -13,7 +13,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: DefaultCompany
-  productName: Hovercraft
+  productName: Paintball
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -520,10 +520,7 @@ PlayerSettings:
       m_Height: 720
       m_Kind: 1
       m_SubKind: 
-  m_BuildTargetBatching:
-  - m_BuildTarget: Standalone
-    m_StaticBatching: 1
-    m_DynamicBatching: 0
+  m_BuildTargetBatching: []
   m_BuildTargetShaderSettings: []
   m_BuildTargetGraphicsJobs: []
   m_BuildTargetGraphicsJobMode: []
@@ -845,14 +842,14 @@ PlayerSettings:
   editorAssembliesCompatibilityLevel: 1
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
-  metroPackageName: Hovercraft
+  metroPackageName: Paintball
   metroPackageVersion: 
   metroCertificatePath: 
   metroCertificatePassword: 
   metroCertificateSubject: 
   metroCertificateIssuer: 
   metroCertificateNotAfter: 0000000000000000
-  metroApplicationDescription: Hovercraft
+  metroApplicationDescription: Paintball
   wsaImages: {}
   metroTileShortName: 
   metroTileShowName: 0
@@ -923,10 +920,10 @@ PlayerSettings:
   captureStartupLogs: {}
   activeInputHandler: 1
   windowsGamepadBackendHint: 0
-  cloudProjectId: 8beaab26-715b-42af-9fd1-8a247e4b76b6
+  cloudProjectId: 7b0f47a3-b675-47a4-a514-72d6a57b5c8b
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: Hovercraft
+  projectName: Paintball
   organizationId: lolburgur
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
