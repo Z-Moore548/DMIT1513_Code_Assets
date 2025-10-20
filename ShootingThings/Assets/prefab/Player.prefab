@@ -483,7 +483,7 @@ MonoBehaviour:
       m_Flags: 0
     m_Flags: 0
   moveSpeed: 3
-  rotatingSpeed: 200
+  rotatingSpeed: 100
   jumpForce: 500
   weaponPivot: {fileID: 7907096713417459374}
 --- !u!1 &3041191519083256603
