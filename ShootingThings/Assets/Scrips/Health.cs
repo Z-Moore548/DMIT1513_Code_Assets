@@ -3,10 +3,15 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     [SerializeField] int currentHelth, maxHealth;
+    [SerializeField] GameObject map, mapSpawn;
+    [SerializeField] bool dropsMap;
+
+    public int CurrentHelth { get => currentHelth; set => currentHelth = value; }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        currentHelth = maxHealth;
+        CurrentHelth = maxHealth;
     }
 
     // Update is called once per frame
@@ -17,12 +22,17 @@ public class Health : MonoBehaviour
     
     public void ApplyDamage(int damage)
     {
-        currentHelth -= damage;
+        CurrentHelth -= damage;
         Debug.Log("OW");
-        BroadcastMessage("UpdateHealthBar", currentHelth);
-        if (currentHelth <= 0)
+        BroadcastMessage("UpdateHealthBar", CurrentHelth);
+        if (CurrentHelth <= 0)
         {
-            currentHelth = 0;
+            CurrentHelth = 0;
+            if (dropsMap)
+            {
+                Instantiate(map, mapSpawn.transform);
+            }
+            
             gameObject.SetActive(false);
         }
     

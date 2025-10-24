@@ -621,6 +621,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5916267209451590733, guid: 37a5dcc9045f40848a1bc448601e658c, type: 3}
+      propertyPath: mapSpawn
+      value: 
+      objectReference: {fileID: 718066559}
     - target: {fileID: 6049560414887585213, guid: 37a5dcc9045f40848a1bc448601e658c, type: 3}
       propertyPath: m_Name
       value: Gobby
@@ -2693,6 +2697,10 @@ PrefabInstance:
       propertyPath: UI
       value: 
       objectReference: {fileID: 39486818}
+    - target: {fileID: 5784118122999041982, guid: 9cc07914251e3fd45870a5fed1765fc0, type: 3}
+      propertyPath: mapSpawn
+      value: 
+      objectReference: {fileID: 718066559}
     - target: {fileID: 5853469546923276587, guid: 9cc07914251e3fd45870a5fed1765fc0, type: 3}
       propertyPath: player
       value: 

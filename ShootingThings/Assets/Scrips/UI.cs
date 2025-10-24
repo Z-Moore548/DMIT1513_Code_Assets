@@ -31,43 +31,31 @@ public class QuestAndUI : MonoBehaviour
                 switch (textNum)
                 {
                     case 1://Steve Dialogue
-
-
                         ShowTextBox();
                         ChangeDialogue("I Have A Quest For You Brave Adventurer.");
                         textNum = 2;
-
                         break;
                     case 2:
-                        
-                                ChangeDialogue("Those Enemies over there have a tresure map. Bring me the tresure once you found it.");
-                                textNum = 3;
-                                quest.gameObject.SetActive(true);
-                                gameTracker.GetComponent<GameTracker>().IsQuestActive = true;
-                        
+                        ChangeDialogue("That guy over there has a tresure map. Bring me the tresure once you found it.");
+                        textNum = 3;
+                        quest.gameObject.SetActive(true);
+                        gameTracker.GetComponent<GameTracker>().IsQuestActive = true;
+                    
                         break;
                     case 3:
-
-                        
                         IsInteractable(true, 1);
                         textNum = 1;
                         dialogueBox.SetActive(false);
-                        
                         break;
                     case 4://Merchant Dialogue
-
                         ShowTextBox();
                         ChangeDialogue("Play my game to earn a Treasure Map.");
                         textNum = 5;
-                        
                         break;
                     case 5:
-
-                        
                         IsInteractable(true, 2);
                         textNum = 4;
                         dialogueBox.SetActive(false);
-                        
                         break;
 
                 }

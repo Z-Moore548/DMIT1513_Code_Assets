@@ -2,15 +2,18 @@ using UnityEngine;
 
 public class GameTracker : MonoBehaviour
 {
-    bool isQuestActive, isQuestCompleted;
+    [SerializeField]bool isQuestActive, gotMap, tresureGot;
 
     public bool IsQuestActive { get => isQuestActive; set => isQuestActive = value; }
-    public bool IsQuestCompleted { get => isQuestCompleted; set => isQuestCompleted = value; }
+    public bool GotMap { get => gotMap; set => gotMap = value; }
+    public bool TresureGot { get => tresureGot; set => tresureGot = value; }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         isQuestActive = false;
+        GotMap = false;
+        tresureGot = false;
     }
 
     // Update is called once per frame
