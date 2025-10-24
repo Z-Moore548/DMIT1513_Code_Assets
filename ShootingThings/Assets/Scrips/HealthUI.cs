@@ -19,7 +19,6 @@ public class HealthUI : MonoBehaviour
     
     void UpdateHealthBar(int currentHelth)
     {
-        Debug.Log("Up");
         int f = currentHelth / 10;
         greenHealth.localScale = new Vector3(f, 1.1f, 1);
         

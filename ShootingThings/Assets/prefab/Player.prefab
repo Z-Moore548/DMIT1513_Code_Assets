@@ -127,7 +127,7 @@ GameObject:
   - component: {fileID: 15151035310019682}
   m_Layer: 0
   m_Name: Body
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -486,6 +486,7 @@ MonoBehaviour:
   rotatingSpeed: 100
   jumpForce: 500
   weaponPivot: {fileID: 7907096713417459374}
+  gameTracker: {fileID: 0}
 --- !u!1 &3041191519083256603
 GameObject:
   m_ObjectHideFlags: 0

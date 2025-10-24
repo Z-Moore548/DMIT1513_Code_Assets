@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] InputAction moveAction, rotateAction, fireAction, jumpAction;
     [SerializeField] float moveSpeed, rotatingSpeed, jumpForce;
-    [SerializeField] GameObject weaponPivot;
+    [SerializeField] GameObject weaponPivot, gameTracker;
     Vector2 moveValue, rotateValue;
     Vector3 angles;
     Rigidbody rBody;
