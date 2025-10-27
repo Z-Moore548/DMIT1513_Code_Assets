@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] InputAction moveAction, rotateAction, fireAction, jumpAction;
     [SerializeField] float moveSpeed, rotatingSpeed, jumpForce;
     [SerializeField] GameObject weaponPivot, gameTracker;
+    [SerializeField] GameObject firstPerson, thirdPerson, mainCam;
+    bool inFirstPerson;
     Vector2 moveValue, rotateValue;
     Vector3 angles;
     Rigidbody rBody;
@@ -16,6 +18,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rBody = gameObject.GetComponent<Rigidbody>();
+        inFirstPerson = true;
     }
 
     // Update is called once per frame
@@ -46,6 +49,18 @@ public class PlayerController : MonoBehaviour
         {
             rBody.AddForce(Vector3.up * jumpForce * Time.fixedDeltaTime, ForceMode.Impulse);
         }
+        if (Keyboard.current.cKey.wasPressedThisFrame)//Camera Controls
+        {
+            inFirstPerson = !inFirstPerson;
+            if (inFirstPerson)
+            {
+                mainCam.transform.position = firstPerson.transform.position;
+            }
+            else
+            {
+                mainCam.transform.position = thirdPerson.transform.position;
+            }
+        }
     }
     void FixedUpdate()
     {
@@ -60,11 +75,30 @@ public class PlayerController : MonoBehaviour
         {
             weaponPivot.transform.localRotation = Quaternion.Euler(300, 0, 0);
         }
-        if(angles.x > 45 && angles.x < 180)
+        if (angles.x > 45 && angles.x < 180)
         {
             weaponPivot.transform.localRotation = Quaternion.Euler(45, 0, 0);
         }
-        
+
+    }
+    
+    public void MoveCamToSide(bool inTrigger)
+    {
+        if (inTrigger)
+        {
+            
+        }
+        else
+        {
+            if (inFirstPerson)
+            {
+                
+            }
+            else
+            {
+                
+            }
+        }
     }
 
     void OnEnable()

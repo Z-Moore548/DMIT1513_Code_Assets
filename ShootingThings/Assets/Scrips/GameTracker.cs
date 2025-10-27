@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class GameTracker : MonoBehaviour
 {
-    [SerializeField]bool isQuestActive, gotMap, tresureGot;
+    [SerializeField] bool isQuestActive, gotMap, tresureGot;
+    [SerializeField] GameObject tresure;
 
     public bool IsQuestActive { get => isQuestActive; set => isQuestActive = value; }
     public bool GotMap { get => gotMap; set => gotMap = value; }
@@ -19,6 +20,21 @@ public class GameTracker : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (!gotMap)
+        {
+            tresure.SetActive(false);
+        }
+        else
+        {
+            if (tresureGot)
+            {
+                tresure.SetActive(false);
+            }
+            else
+            {
+                tresure.SetActive(true);
+            }
+            
+        }
     }
 }

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Interact : MonoBehaviour
 {
-    [SerializeField] GameObject UI;
+    [SerializeField] GameObject UI, gameTracker, player;
     [SerializeField] TalkingTo who;
     enum TalkingTo{ steve, merchant}
     void Start()
@@ -19,9 +19,18 @@ public class Interact : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            player.GetComponent<PlayerController>().MoveCamToSide(true);
             if (who == TalkingTo.steve)
             {
-                UI.GetComponent<QuestAndUI>().IsInteractable(true, 1);
+                if (gameTracker.GetComponent<GameTracker>().TresureGot)
+                {
+                    UI.GetComponent<QuestAndUI>().IsInteractable(true, 4);
+                }
+                else
+                {
+                    UI.GetComponent<QuestAndUI>().IsInteractable(true, 1);
+                }
+                
             }
             if(who == TalkingTo.merchant)
             {
@@ -34,9 +43,17 @@ public class Interact : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            player.GetComponent<PlayerController>().MoveCamToSide(false);
             if (who == TalkingTo.steve)
             {
-                UI.GetComponent<QuestAndUI>().IsInteractable(false, 1);
+                if (gameTracker.GetComponent<GameTracker>().TresureGot)
+                {
+                    UI.GetComponent<QuestAndUI>().IsInteractable(false, 4);
+                }
+                else
+                {
+                    UI.GetComponent<QuestAndUI>().IsInteractable(false, 1);
+                }
             }
             if(who == TalkingTo.merchant)
             {

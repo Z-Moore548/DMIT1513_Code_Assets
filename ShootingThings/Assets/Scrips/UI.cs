@@ -1,12 +1,13 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 
 public class QuestAndUI : MonoBehaviour
 {
-    [SerializeField] TMP_Text quest, spoken, interact, play;
-    [SerializeField] GameObject dialogueBox, gameTracker;
+    [SerializeField] TMP_Text quest, quest2, spoken, interact, play;
+    [SerializeField] GameObject dialogueBox, gameTracker, map, tresure;
     bool interactable;
     [SerializeField] int textNum;
     
@@ -15,13 +16,24 @@ public class QuestAndUI : MonoBehaviour
         dialogueBox.SetActive(false);
         interact.gameObject.SetActive(false);
         quest.gameObject.SetActive(false);
+        quest2.gameObject.SetActive(false);
         play.gameObject.SetActive(false);
+        map.SetActive(false);
+        tresure.SetActive(false);
         textNum = 1;
     }
 
 
     void Update()
     {
+        if (gameTracker.GetComponent<GameTracker>().GotMap)
+        {
+            map.SetActive(true);
+        }
+        if (gameTracker.GetComponent<GameTracker>().TresureGot)
+        {
+            tresure.SetActive(true);
+        }
         if (interactable)
         {
             if (Keyboard.current.eKey.wasPressedThisFrame)
@@ -57,6 +69,34 @@ public class QuestAndUI : MonoBehaviour
                         textNum = 4;
                         dialogueBox.SetActive(false);
                         break;
+                    case 6://get tresure
+                        ShowTextBox();
+                        ChangeDialogue("You got the Tresure!");
+                        quest.gameObject.SetActive(false);
+                        quest2.gameObject.SetActive(true);
+                        gameTracker.GetComponent<GameTracker>().TresureGot = true;
+                        textNum = 7;
+                        break;
+                    case 7:
+                        IsInteractable(true, 3);
+                        textNum = 6;
+                        dialogueBox.SetActive(false);
+                        break;
+                    case 8:
+                        ShowTextBox();
+                        ChangeDialogue("Thank you for bring me the Tresure!");
+                        textNum = 9;
+                        break;
+                    case 9:
+                        ChangeDialogue("You are true Hero!, thank you for Everything");
+                        textNum = 10;
+                        break;
+                    case 10:
+                        Application.Quit();
+                        IsInteractable(true, 4);
+                        textNum = 8;
+                        dialogueBox.SetActive(false);
+                        break;
 
                 }
             }
@@ -77,6 +117,12 @@ public class QuestAndUI : MonoBehaviour
                     break;
                 case 2:
                     textNum = 4;
+                    break;
+                case 3:
+                    textNum = 6;
+                    break;
+                case 4:
+                    textNum = 8;
                     break;
             }
         }
