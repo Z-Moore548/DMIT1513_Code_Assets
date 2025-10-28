@@ -2,12 +2,13 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using Unity.VisualScripting;
 
 
 public class QuestAndUI : MonoBehaviour
 {
     [SerializeField] TMP_Text quest, quest2, spoken, interact, play;
-    [SerializeField] GameObject dialogueBox, gameTracker, map, tresure;
+    [SerializeField] GameObject dialogueBox, gameTracker, map, tresure, player;
     bool interactable;
     [SerializeField] int textNum;
     
@@ -58,6 +59,7 @@ public class QuestAndUI : MonoBehaviour
                         IsInteractable(true, 1);
                         textNum = 1;
                         dialogueBox.SetActive(false);
+                        player.GetComponent<PlayerController>().MoveCamToSide(false);
                         break;
                     case 4://Merchant Dialogue
                         ShowTextBox();
@@ -68,6 +70,7 @@ public class QuestAndUI : MonoBehaviour
                         IsInteractable(true, 2);
                         textNum = 4;
                         dialogueBox.SetActive(false);
+                        player.GetComponent<PlayerController>().MoveCamToSide(false);
                         break;
                     case 6://get tresure
                         ShowTextBox();
@@ -81,6 +84,7 @@ public class QuestAndUI : MonoBehaviour
                         IsInteractable(true, 3);
                         textNum = 6;
                         dialogueBox.SetActive(false);
+                        player.GetComponent<PlayerController>().MoveCamToSide(false);
                         break;
                     case 8:
                         ShowTextBox();
@@ -96,6 +100,7 @@ public class QuestAndUI : MonoBehaviour
                         IsInteractable(true, 4);
                         textNum = 8;
                         dialogueBox.SetActive(false);
+                        player.GetComponent<PlayerController>().MoveCamToSide(false);
                         break;
 
                 }
@@ -136,6 +141,7 @@ public class QuestAndUI : MonoBehaviour
 
     void ShowTextBox()
     {
+        player.GetComponent<PlayerController>().MoveCamToSide(true);
         dialogueBox.SetActive(true);
         interact.gameObject.SetActive(false);
     }

@@ -19,7 +19,7 @@ public class Interact : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            player.GetComponent<PlayerController>().MoveCamToSide(true);
+            
             if (who == TalkingTo.steve)
             {
                 if (gameTracker.GetComponent<GameTracker>().TresureGot)
@@ -43,7 +43,7 @@ public class Interact : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            player.GetComponent<PlayerController>().MoveCamToSide(false);
+            
             if (who == TalkingTo.steve)
             {
                 if (gameTracker.GetComponent<GameTracker>().TresureGot)

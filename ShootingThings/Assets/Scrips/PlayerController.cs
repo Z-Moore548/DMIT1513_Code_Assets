@@ -8,8 +8,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] InputAction moveAction, rotateAction, fireAction, jumpAction;
     [SerializeField] float moveSpeed, rotatingSpeed, jumpForce;
     [SerializeField] GameObject weaponPivot, gameTracker;
-    [SerializeField] GameObject firstPerson, thirdPerson, mainCam;
-    bool inFirstPerson;
+    [SerializeField] GameObject firstPerson, thirdPerson, mainCam, sideCam;
+    bool inFirstPerson, zoomed;
     Vector2 moveValue, rotateValue;
     Vector3 angles;
     Rigidbody rBody;
@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     {
         rBody = gameObject.GetComponent<Rigidbody>();
         inFirstPerson = true;
+        zoomed = false;
     }
 
     // Update is called once per frame
@@ -61,6 +62,23 @@ public class PlayerController : MonoBehaviour
                 mainCam.transform.position = thirdPerson.transform.position;
             }
         }
+        if (!inFirstPerson)
+        {
+            if (Keyboard.current.fKey.wasPressedThisFrame)
+            {
+                if (zoomed)
+                {
+                    zoomed = false;
+                    mainCam.GetComponent<Camera>().fieldOfView = 60;
+                }
+                else
+                {
+                    zoomed = true;
+                    mainCam.GetComponent<Camera>().fieldOfView = 30;
+                }
+                
+            }
+        }
     }
     void FixedUpdate()
     {
@@ -82,22 +100,17 @@ public class PlayerController : MonoBehaviour
 
     }
     
-    public void MoveCamToSide(bool inTrigger)
+    public void MoveCamToSide(bool side)
     {
-        if (inTrigger)
+        if (side)
         {
-            
+            OnDisable();
+            sideCam.SetActive(true);
         }
         else
         {
-            if (inFirstPerson)
-            {
-                
-            }
-            else
-            {
-                
-            }
+            OnEnable();
+            sideCam.SetActive(false);
         }
     }
 
