@@ -28,7 +28,6 @@ public class GameTracker : MonoBehaviour
         {
             if (tresureGot)
             {
-                UI.GetComponent<QuestAndUI>().IsInteractable(false, 3);
                 tresure.SetActive(false);
             }
             else

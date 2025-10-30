@@ -81,7 +81,7 @@ public class QuestAndUI : MonoBehaviour
                         textNum = 7;
                         break;
                     case 7:
-                        IsInteractable(true, 3);
+                        IsInteractable(false, 3);
                         textNum = 6;
                         dialogueBox.SetActive(false);
                         player.GetComponent<PlayerController>().MoveCamToSide(false);
