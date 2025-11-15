@@ -517,8 +517,8 @@ MonoBehaviour:
       m_Action: Rotate
       m_Flags: 8
     m_Flags: 0
-  moveSpeed: 10
-  rotatingSpeed: 100
+  moveSpeed: 2
+  rotatingSpeed: 150
   gameTracker: {fileID: 0}
   cameraPivot: {fileID: 3239546177245657458}
 --- !u!54 &1073885213182540846
