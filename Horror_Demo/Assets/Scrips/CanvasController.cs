@@ -43,4 +43,16 @@ public class CanvasController : MonoBehaviour
             anim.SetBool("FadeOut", false);
         }
     }
+
+    public void Blink(bool dark)
+    {
+        if (dark == true)
+        {
+            anim.SetBool("LightOff", true);
+        }
+        else
+        {
+            anim.SetBool("LightOff", false);
+        }
+    }
 }

@@ -17,16 +17,24 @@ public class GameManger : MonoBehaviour
     {
         
     }
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            StartMonsterChase();
+        }
+    }
 
     public void ReturnPlayer()
     {
         canvas.GetComponent<CanvasController>().Fade(true);
         StartCoroutine(MovePlayer());
     }
+    
 
     public void StartMonsterChase()
     {
-        
+        StartCoroutine(MonsterChase());
     }
 
     IEnumerator MovePlayer()
@@ -38,6 +46,10 @@ public class GameManger : MonoBehaviour
     }
     IEnumerator MonsterChase()
     {
-        yield return new WaitForSeconds(5);
+        canvas.GetComponent<CanvasController>().Blink(true);
+        monsterScavanger.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
+        canvas.GetComponent<CanvasController>().Blink(false);
+        
     }
 }
