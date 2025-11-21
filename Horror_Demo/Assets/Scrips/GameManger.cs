@@ -9,7 +9,7 @@ public class GameManger : MonoBehaviour
     [SerializeField] GameObject[] monsterPoints = new GameObject[5], lights = new GameObject[7];
 
     int monsterIndex;
-    [SerializeField] bool notTriggered, doorReached;
+    [SerializeField] bool notTriggered, doorReached, firstRun;
 
     void Start()
     {
@@ -18,14 +18,15 @@ public class GameManger : MonoBehaviour
         monsterIndex = 0;
         notTriggered = true;
         doorReached = false;
+        firstRun = true;
     }
 
     void Update()
     {
-        if (Keyboard.current.escapeKey.wasPressedThisFrame)
-        {
-            Application.Quit();
-        }
+        // if (Keyboard.current.escapeKey.wasPressedThisFrame)
+        // {
+        //     Application.Quit();
+        // }
         if (doorReached)
         {
             monsterScavanger.SetActive(false);
@@ -33,12 +34,16 @@ public class GameManger : MonoBehaviour
     }
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player") && notTriggered)
+        if(other.gameObject.CompareTag("Player") && firstRun)
+        {
+            
+        }
+        if (other.gameObject.CompareTag("Player") && notTriggered && !firstRun)
         {
             StartMonsterChase();
             notTriggered = false;
         }
-        if(other.gameObject.CompareTag("Player") && doorReached)
+        if(other.gameObject.CompareTag("Player") && doorReached && !firstRun)
         {
             DoJumpScare();
         }
@@ -46,9 +51,18 @@ public class GameManger : MonoBehaviour
 
     public void ReturnPlayer()
     {
+        if (firstRun)
+        {
+            firstRun = false;
+        }
+        else
+        {
+            doorReached = true;
+        }
         canvas.GetComponent<CanvasController>().Fade(true);
-        doorReached = true;
         StartCoroutine(MovePlayer());
+
+        
     }
     
 

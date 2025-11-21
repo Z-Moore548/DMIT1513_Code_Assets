@@ -20,10 +20,10 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Keyboard.current.escapeKey.isPressed)
-        {
-            Application.Quit();
-        }
+        // if (Keyboard.current.escapeKey.isPressed)
+        // {
+        //     Application.Quit();
+        // }
         moveValue = moveAction.ReadValue<Vector2>();
         rotateValue = rotateAction.ReadValue<Vector2>();
         transform.Rotate(Vector3.up, rotateValue.x * rotatingSpeed * Time.deltaTime);
@@ -62,12 +62,12 @@ public class PlayerController : MonoBehaviour
     }
     
 
-    void OnEnable()
+    public void OnEnable()
     {
         moveAction.Enable();
         rotateAction.Enable();
     }
-    void OnDisable()
+    public void OnDisable()
     {
         moveAction.Disable();
         rotateAction.Disable();

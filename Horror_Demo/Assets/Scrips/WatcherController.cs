@@ -24,4 +24,13 @@ public class WatcherController : MonoBehaviour
         activateScare = true;
     }
 
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            
+            Application.Quit();
+        }
+    }
+
 }
