@@ -1,9 +1,12 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class WatcherController : MonoBehaviour
 {
-    [SerializeField] GameObject player;
+    [SerializeField] GameObject player, gameManager;
     [SerializeField] Animator anim;
+    [SerializeField] AudioSource sound;
+    [SerializeField] AudioClip growl, yell;
     [SerializeField] float speed;
     bool activateScare;
     void Start()
@@ -14,7 +17,6 @@ public class WatcherController : MonoBehaviour
     {
         if (activateScare)
         {
-            Debug.Log("Scary");
             anim.SetBool("JumpScare", true);
             transform.Translate(Vector3.forward * speed * Time.deltaTime);
         }
@@ -22,6 +24,7 @@ public class WatcherController : MonoBehaviour
     public void JumpScareActivate()
     {
         activateScare = true;
+        PlayYell();
     }
 
     void OnTriggerEnter(Collider other)
@@ -29,8 +32,17 @@ public class WatcherController : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             
-            Application.Quit();
+            gameManager.GetComponent<GameManger>().EndDemo();
         }
+    }
+
+    public void PlayGrowl()
+    {
+        sound.PlayOneShot(growl, 1);
+    }
+    public void PlayYell()
+    {
+        sound.PlayOneShot(yell, 0.1f);
     }
 
 }

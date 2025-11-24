@@ -8,6 +8,7 @@ public class PauseController : MonoBehaviour
     {
         player.GetComponent<PlayerController>().OnEnable();
         pauseMenu.SetActive(false);
+        Cursor.visible = false;
         Time.timeScale = 1;
     }
     public void OnTitle()

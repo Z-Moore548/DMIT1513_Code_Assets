@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 public class GameManger : MonoBehaviour
 {
     [SerializeField] GameObject player, monsterScavanger, monsterWatcher;
-    [SerializeField] GameObject playerSpawn, canvas, JumpscareSpawn;
+    [SerializeField] GameObject playerSpawn, canvas, JumpscareSpawn, invisWall, roomLight;
     [SerializeField] GameObject[] monsterPoints = new GameObject[5], lights = new GameObject[7];
 
     int monsterIndex;
@@ -19,6 +19,7 @@ public class GameManger : MonoBehaviour
         notTriggered = true;
         doorReached = false;
         firstRun = true;
+        Cursor.visible = false;
     }
 
     void Update()
@@ -46,6 +47,7 @@ public class GameManger : MonoBehaviour
         if(other.gameObject.CompareTag("Player") && doorReached && !firstRun)
         {
             DoJumpScare();
+            invisWall.SetActive(true);
         }
     }
 
@@ -73,6 +75,7 @@ public class GameManger : MonoBehaviour
     void DoJumpScare()
     {
         monsterWatcher.transform.position = new Vector3(monsterPoints[0].transform.position.x, monsterPoints[0].transform.position.y - 8f, monsterPoints[0].transform.position.z);
+        monsterWatcher.GetComponent<WatcherController>().PlayGrowl();
         StartCoroutine(JumpScareStart());
     }
 
@@ -89,7 +92,7 @@ public class GameManger : MonoBehaviour
         {
             for (int i = 0; i < lights.Length; i++)
             {
-                lights[i].GetComponent<Light>().intensity = 2;
+                lights[i].GetComponent<Light>().intensity = 5;
             }
         }
         
@@ -103,6 +106,20 @@ public class GameManger : MonoBehaviour
         }
     }
 
+    public void EndDemo()
+    {
+        LightsOff(true);
+        Destroy(roomLight);
+        player.GetComponent<PlayerController>().OnDisable();
+        StartCoroutine(End());
+        
+    }
+
+    IEnumerator End()
+    {
+       yield return new WaitForSeconds(1);
+       canvas.GetComponent<CanvasController>().EndScreen();
+    }
     IEnumerator MovePlayer()
     {
         yield return new WaitForSeconds(1);
@@ -112,7 +129,7 @@ public class GameManger : MonoBehaviour
     }
     IEnumerator JumpScareStart() //Figure out how to detect when you have died.
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(4);
         monsterWatcher.GetComponent<WatcherController>().JumpScareActivate();
         
     }
@@ -128,10 +145,11 @@ public class GameManger : MonoBehaviour
         {
             LightsOff(true);
             monsterScavanger.transform.position = monsterPoints[monsterIndex].transform.position;
+            monsterScavanger.GetComponent<ScavangerMonster>().PlayAudio();
             monsterIndex++;
             yield return new WaitForSeconds(0.5f);
             LightsOff(false);
-            yield return new WaitForSeconds(6);
+            yield return new WaitForSeconds(5);
         }
         
 
@@ -140,10 +158,11 @@ public class GameManger : MonoBehaviour
             LightsOff(true);
             MonsterNearCheck();
             monsterScavanger.transform.position = monsterPoints[monsterIndex].transform.position;
+            monsterScavanger.GetComponent<ScavangerMonster>().PlayAudio();
             monsterIndex++;
             yield return new WaitForSeconds(0.5f);
             LightsOff(false);
-            yield return new WaitForSeconds(6);
+            yield return new WaitForSeconds(4);
         }
         
 
@@ -152,10 +171,11 @@ public class GameManger : MonoBehaviour
             LightsOff(true);
             MonsterNearCheck();
             monsterScavanger.transform.position = monsterPoints[monsterIndex].transform.position;
+            monsterScavanger.GetComponent<ScavangerMonster>().PlayAudio();
             monsterIndex++;
             yield return new WaitForSeconds(0.5f);
             LightsOff(false);
-            yield return new WaitForSeconds(6);
+            yield return new WaitForSeconds(4);
         }
         
 
@@ -164,10 +184,11 @@ public class GameManger : MonoBehaviour
             LightsOff(true);
             MonsterNearCheck();
             monsterScavanger.transform.position = monsterPoints[monsterIndex].transform.position;
+            monsterScavanger.GetComponent<ScavangerMonster>().PlayAudio();
             monsterIndex++;
             yield return new WaitForSeconds(0.5f);
             LightsOff(false);
-            yield return new WaitForSeconds(6);
+            yield return new WaitForSeconds(3);
         }
         
 
@@ -176,10 +197,11 @@ public class GameManger : MonoBehaviour
             LightsOff(true);
             MonsterNearCheck();
             monsterScavanger.transform.position = monsterPoints[monsterIndex].transform.position;
+            monsterScavanger.GetComponent<ScavangerMonster>().PlayAudio();
             monsterIndex++;
             yield return new WaitForSeconds(0.5f);
             LightsOff(false);
-            yield return new WaitForSeconds(6);
+            yield return new WaitForSeconds(3);
         }
         
 
@@ -188,10 +210,11 @@ public class GameManger : MonoBehaviour
             LightsOff(true);
             MonsterNearCheck();
             monsterScavanger.transform.position = monsterPoints[monsterIndex].transform.position;
+            monsterScavanger.GetComponent<ScavangerMonster>().PlayAudio();
             monsterIndex++;
             yield return new WaitForSeconds(0.5f);
             LightsOff(false);
-            yield return new WaitForSeconds(6);
+            yield return new WaitForSeconds(4);
         }
         
 
@@ -200,10 +223,11 @@ public class GameManger : MonoBehaviour
             LightsOff(true);
             MonsterNearCheck();
             monsterScavanger.transform.position = monsterPoints[monsterIndex].transform.position;
+            monsterScavanger.GetComponent<ScavangerMonster>().PlayAudio();
             monsterIndex++;
             yield return new WaitForSeconds(0.5f);
             LightsOff(false);
-            yield return new WaitForSeconds(6);
+            yield return new WaitForSeconds(2);
         }
         
 
@@ -212,10 +236,11 @@ public class GameManger : MonoBehaviour
             LightsOff(true);
             MonsterNearCheck();
             monsterScavanger.transform.position = monsterPoints[monsterIndex].transform.position;
+            monsterScavanger.GetComponent<ScavangerMonster>().PlayAudio();
             monsterIndex++;
             yield return new WaitForSeconds(0.5f);
             LightsOff(false);
-            yield return new WaitForSeconds(6);
+            yield return new WaitForSeconds(2);
         }
         
     }

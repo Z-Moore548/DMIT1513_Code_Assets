@@ -4,20 +4,22 @@ using UnityEngine.UI;
 
 public class CanvasController : MonoBehaviour
 {   
-    [SerializeField] GameObject panel, pauseMenu, player;
+    [SerializeField] GameObject panel, pauseMenu, player, endScreen;
     [SerializeField] Animator anim;
+    bool ended;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        ended = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Keyboard.current.escapeKey.wasPressedThisFrame)
+        if (Keyboard.current.escapeKey.wasPressedThisFrame && !ended)
         {
             pauseMenu.SetActive(true);
+            Cursor.visible = true;
             player.GetComponent<PlayerController>().OnDisable();
             Time.timeScale = 0;
         }
@@ -44,5 +46,12 @@ public class CanvasController : MonoBehaviour
         {
             anim.SetBool("LightOff", false);
         }
+    }
+
+    public void EndScreen()
+    {
+        ended = true;
+        endScreen.SetActive(true);
+        Cursor.visible = true;
     }
 }
