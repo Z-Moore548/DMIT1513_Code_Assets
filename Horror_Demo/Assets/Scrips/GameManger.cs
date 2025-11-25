@@ -11,13 +11,15 @@ public class GameManger : MonoBehaviour
     int monsterIndex;
     [SerializeField] bool notTriggered, doorReached, firstRun;
 
+    public bool DoorReached { get => doorReached; set => doorReached = value; }
+
     void Start()
     {
         player.transform.position = playerSpawn.transform.position;
         player.transform.rotation = playerSpawn.transform.rotation;
         monsterIndex = 0;
         notTriggered = true;
-        doorReached = false;
+        DoorReached = false;
         firstRun = true;
         Cursor.visible = false;
     }
@@ -28,7 +30,7 @@ public class GameManger : MonoBehaviour
         // {
         //     Application.Quit();
         // }
-        if (doorReached)
+        if (DoorReached)
         {
             monsterScavanger.SetActive(false);
         }
@@ -44,7 +46,7 @@ public class GameManger : MonoBehaviour
             StartMonsterChase();
             notTriggered = false;
         }
-        if(other.gameObject.CompareTag("Player") && doorReached && !firstRun)
+        if(other.gameObject.CompareTag("Player") && DoorReached && !firstRun)
         {
             DoJumpScare();
             invisWall.SetActive(true);
@@ -59,7 +61,7 @@ public class GameManger : MonoBehaviour
         }
         else
         {
-            doorReached = true;
+            DoorReached = true;
         }
         canvas.GetComponent<CanvasController>().Fade(true);
         StartCoroutine(MovePlayer());
@@ -102,7 +104,7 @@ public class GameManger : MonoBehaviour
     {
         if(Vector3.Distance(monsterPoints[monsterIndex].transform.position, player.transform.position) < Vector3.Distance(monsterPoints[monsterIndex].transform.position, monsterPoints[monsterIndex - 1].transform.position))
         {
-            //this detects if the monster is closer to you than the next jump point.
+            
         }
     }
 
@@ -110,11 +112,19 @@ public class GameManger : MonoBehaviour
     {
         LightsOff(true);
         Destroy(roomLight);
+        canvas.GetComponent<CanvasController>().EndScreen();
+        Time.timeScale = 0;
         player.GetComponent<PlayerController>().OnDisable();
         StartCoroutine(End());
         
     }
 
+    IEnumerator Kill()
+    {
+        yield return new WaitForSeconds(1);
+        DoorReached = true;
+        LightsOff(true);
+    }
     IEnumerator End()
     {
        yield return new WaitForSeconds(1);
@@ -141,7 +151,7 @@ public class GameManger : MonoBehaviour
         LightsOff(false);
         yield return new WaitForSeconds(6);
 
-        if (!doorReached)
+        if (!DoorReached)
         {
             LightsOff(true);
             monsterScavanger.transform.position = monsterPoints[monsterIndex].transform.position;
@@ -153,7 +163,7 @@ public class GameManger : MonoBehaviour
         }
         
 
-        if (!doorReached)
+        if (!DoorReached)
         {
             LightsOff(true);
             MonsterNearCheck();
@@ -166,7 +176,7 @@ public class GameManger : MonoBehaviour
         }
         
 
-        if (!doorReached)
+        if (!DoorReached)
         {
             LightsOff(true);
             MonsterNearCheck();
@@ -179,7 +189,7 @@ public class GameManger : MonoBehaviour
         }
         
 
-        if (!doorReached)
+        if (!DoorReached)
         {
             LightsOff(true);
             MonsterNearCheck();
@@ -192,7 +202,7 @@ public class GameManger : MonoBehaviour
         }
         
 
-        if (!doorReached)
+        if (!DoorReached)
         {
             LightsOff(true);
             MonsterNearCheck();
@@ -205,7 +215,7 @@ public class GameManger : MonoBehaviour
         }
         
 
-        if (!doorReached)
+        if (!DoorReached)
         {
             LightsOff(true);
             MonsterNearCheck();
@@ -218,7 +228,7 @@ public class GameManger : MonoBehaviour
         }
         
 
-        if (!doorReached)
+        if (!DoorReached)
         {
             LightsOff(true);
             MonsterNearCheck();
@@ -231,7 +241,7 @@ public class GameManger : MonoBehaviour
         }
         
 
-        if (!doorReached)
+        if (!DoorReached)
         {
             LightsOff(true);
             MonsterNearCheck();

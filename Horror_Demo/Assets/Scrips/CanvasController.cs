@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class CanvasController : MonoBehaviour
 {   
-    [SerializeField] GameObject panel, pauseMenu, player, endScreen;
+    [SerializeField] GameObject panel, pauseMenu, player, endScreen, gameManager, gameOver;
     [SerializeField] Animator anim;
     bool ended;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -50,6 +50,10 @@ public class CanvasController : MonoBehaviour
 
     public void EndScreen()
     {
+        if (!gameManager.GetComponent<GameManger>().DoorReached)
+        {
+            gameOver.SetActive(true);
+        }
         ended = true;
         endScreen.SetActive(true);
         Cursor.visible = true;

@@ -22,4 +22,8 @@ public class ScavangerMonster : MonoBehaviour
     {
         sound.PlayOneShot(thump, 2f);
     }
+    public void PlayScreem()
+    {
+        sound.Play();
+    }
 }
