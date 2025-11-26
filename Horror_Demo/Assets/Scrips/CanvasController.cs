@@ -58,4 +58,10 @@ public class CanvasController : MonoBehaviour
         endScreen.SetActive(true);
         Cursor.visible = true;
     }
+
+    public void Task()
+    {
+        anim.SetTrigger("Task");
+        
+    }
 }

@@ -1,11 +1,13 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using TMPro;
 
 public class GameManger : MonoBehaviour
 {
     [SerializeField] GameObject player, monsterScavanger, monsterWatcher;
     [SerializeField] GameObject playerSpawn, canvas, JumpscareSpawn, invisWall, roomLight;
+    [SerializeField] TMP_Text taskText;
     [SerializeField] GameObject[] monsterPoints = new GameObject[5], lights = new GameObject[7];
 
     int monsterIndex;
@@ -22,6 +24,7 @@ public class GameManger : MonoBehaviour
         DoorReached = false;
         firstRun = true;
         Cursor.visible = false;
+        StartCoroutine(TaskAnim());
     }
 
     void Update()
@@ -58,15 +61,15 @@ public class GameManger : MonoBehaviour
         if (firstRun)
         {
             firstRun = false;
+            taskText.text = "Jobs Done: What arE you still d0ing her3?";
         }
         else
         {
             DoorReached = true;
+            taskText.text = "Jobs Done: Y0u eed to g3t ou1 o hr3!";
         }
         canvas.GetComponent<CanvasController>().Fade(true);
         StartCoroutine(MovePlayer());
-
-        
     }
     
 
@@ -119,11 +122,10 @@ public class GameManger : MonoBehaviour
         
     }
 
-    IEnumerator Kill()
+    IEnumerator TaskAnim()
     {
         yield return new WaitForSeconds(1);
-        DoorReached = true;
-        LightsOff(true);
+        canvas.GetComponent<CanvasController>().Task();
     }
     IEnumerator End()
     {
@@ -136,6 +138,7 @@ public class GameManger : MonoBehaviour
         player.transform.position = playerSpawn.transform.position;
         player.transform.rotation = playerSpawn.transform.rotation;
         canvas.GetComponent<CanvasController>().Fade(false);
+        StartCoroutine(TaskAnim());
     }
     IEnumerator JumpScareStart() //Figure out how to detect when you have died.
     {
