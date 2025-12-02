@@ -1,53 +1,64 @@
-
 using TMPro;
 using UnityEngine;
-
+using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager instance;
+    [SerializeField] int[] scores = new int[4];
 
-    [SerializeField] GameObject Timer;
-    [SerializeField] TMP_Text[] scores;
-    [SerializeField] float startTime = 60f, currentTime;
-    [SerializeField] bool timerActive;
+    public int[] Scores { get => scores; set => scores = value; }
+
+    void Awake()
+    {
+        if (instance == null) 
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+        
+        DontDestroyOnLoad(this.gameObject);
+    }
     void Start()
     {
-        timerActive = false;
-        currentTime = startTime;
-        UpdateTimerDisplay();
+        
     }
 
     void Update()
     {
-        if (timerActive)
+        if (Keyboard.current.kKey.wasPressedThisFrame)
         {
-            if(currentTime > 0)
-            {
-                currentTime -= Time.deltaTime;
-                UpdateTimerDisplay();
-            }
-            else
-            {
-                currentTime = 0;
-                timerActive = false;
-                Timer.GetComponent<TMP_Text>().text = "0";
-                Debug.Log("Timer Over");
-            }
+            UpdateScores(0);
         }
+        if (Keyboard.current.jKey.wasPressedThisFrame)
+        {
+            UpdateScores(1);
+        }
+        if (Keyboard.current.lKey.wasPressedThisFrame)
+        {
+            UpdateScores(2);
+        }
+        if (Keyboard.current.pKey.wasPressedThisFrame)
+        {
+            UpdateScores(3);
+        }
+        // for (int i = 0; i < scoresText.Length; i++)
+        // {
+        //     scoresText[i].text = $"{scores[i]}";
+        // }
     }
 
-    void UpdateTimerDisplay()
+    public void UpdateScores(int slot)
     {
-        int seconds = Mathf.FloorToInt(currentTime % 60);
-        Timer.GetComponent<TMP_Text>().text = $"{seconds}";
+        Scores[slot]++;
+        
     }
-
-    void PauseTimer()
+    public void EndGame()
     {
-        timerActive = false;
-    }
-    void StartTimer()
-    {
-        timerActive = true;
+        SceneManager.LoadScene("Results");
     }
 }
