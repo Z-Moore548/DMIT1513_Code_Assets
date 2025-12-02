@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] GameObject ostrich;
+    [SerializeField] GameObject ostrich, spawn;
     [SerializeField] float speed, jumpForce, dashForce;
     [SerializeField] int gamepadID, playerIndex;
 
@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
             if(zValue > 0)
             {
                 ostrich.transform.rotation = Quaternion.Euler(0,0,0);
-                 facingRight = false;
+                facingRight = false;
             }
 
             if (Gamepad.all[playerIndex].aButton.wasPressedThisFrame)
@@ -79,9 +79,29 @@ public class PlayerController : MonoBehaviour
             dash = false;
         }
     }
+    void LateUpdate()
+    {
+        transform.rotation = Quaternion.Euler(0,transform.rotation.y,0);
+    }
+    public int GetGamepadID()
+    {
+        // return the gamepad ID that the object is currently linked to.
+        return gamepadID;
+    }
 
+    public void SetGamepadID(int id)
+    {
+        // set the gamepad ID that the object should be linked to.
+        gamepadID = id;
+    }
 
-
+    
+    public void Killed()
+    {
+        Debug.Log("BLARG");
+        transform.position = new Vector3(10,0,0);
+        StartCoroutine(Respawn());
+    }
 
 
     IEnumerator DashCooldown()
@@ -92,5 +112,9 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(.5f);
         dashCool = true;
     }
-
+    IEnumerator Respawn()
+    {
+        yield return new WaitForSeconds(2);
+        transform.position = spawn.transform.position;
+    }
 }

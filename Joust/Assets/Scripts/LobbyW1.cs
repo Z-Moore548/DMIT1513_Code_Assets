@@ -57,7 +57,7 @@ public class LobbyW1 : MonoBehaviour
     {
         for (int i = 0; i < gamepadManager.PlayerCount(); i++)
         {
-            playerObjects[i].GetComponent<W1_V2_PlayerMovement>().SetGamepadID(gamepadManager.PlayerStatus(i));
+            playerObjects[i].GetComponent<PlayerController>().SetGamepadID(gamepadManager.PlayerStatus(i));
             playerObjects[i].SetActive(true);
         }
         gameObject.SetActive(false);

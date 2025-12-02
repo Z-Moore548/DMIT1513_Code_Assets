@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 7037569503697856912}
   - component: {fileID: 5330545581428637718}
   - component: {fileID: 8236066850577174553}
-  - component: {fileID: 8776767291022962118}
   m_Layer: 0
   m_Name: Chara
   m_TagString: Untagged
@@ -91,29 +90,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &8776767291022962118
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2680847219115111109}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4787757046038305754
 GameObject:
   m_ObjectHideFlags: 0
@@ -125,9 +101,10 @@ GameObject:
   - component: {fileID: 4189542549996845555}
   - component: {fileID: 3899112282070635614}
   - component: {fileID: 9008267017536447888}
+  - component: {fileID: 5491782483945944269}
   m_Layer: 0
   m_Name: Player2
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -162,6 +139,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   ostrich: {fileID: 915893337153413548}
+  spawn: {fileID: 0}
   speed: 10
   jumpForce: 500
   dashForce: 700
@@ -179,7 +157,7 @@ Rigidbody:
   m_GameObject: {fileID: 4787757046038305754}
   serializedVersion: 5
   m_Mass: 1
-  m_LinearDamping: 0
+  m_LinearDamping: 1
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -195,8 +173,29 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!65 &5491782483945944269
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4787757046038305754}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2, y: 2.3, z: 1.65}
+  m_Center: {x: 0, y: 1.15, z: 0}
 --- !u!1001 &32793977189047549
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -252,10 +251,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 4bcc953d7edde084cb75368836459400, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 7088795153093471435}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4bcc953d7edde084cb75368836459400, type: 3}
 --- !u!4 &575959992127814422 stripped
 Transform:
@@ -267,27 +263,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 4bcc953d7edde084cb75368836459400, type: 3}
   m_PrefabInstance: {fileID: 32793977189047549}
   m_PrefabAsset: {fileID: 0}
---- !u!65 &7088795153093471435
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 915893337153413548}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 4.949456, y: 12.7180605, z: 9.26609}
-  m_Center: {x: 0.001594305, y: 6.318414, z: -0.18498802}
 --- !u!1001 &1857753617239149024
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -355,10 +330,54 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1207145758441076341, guid: c8f328ffdc9cd3646ab8b4c340edbbba, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5404014451947223641}
+    - targetCorrespondingSourceObject: {fileID: 1207145758441076341, guid: c8f328ffdc9cd3646ab8b4c340edbbba, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 972350807520567093}
   m_SourcePrefab: {fileID: 100100000, guid: c8f328ffdc9cd3646ab8b4c340edbbba, type: 3}
 --- !u!4 &163085152433677615 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1984807636101475535, guid: c8f328ffdc9cd3646ab8b4c340edbbba, type: 3}
   m_PrefabInstance: {fileID: 1857753617239149024}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &650969954883174293 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1207145758441076341, guid: c8f328ffdc9cd3646ab8b4c340edbbba, type: 3}
+  m_PrefabInstance: {fileID: 1857753617239149024}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &5404014451947223641
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 650969954883174293}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.085989, y: 0.6727742, z: 0.55672634}
+  m_Center: {x: -0.28076586, y: 0.30668682, z: 0.1099395}
+--- !u!114 &972350807520567093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 650969954883174293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e5947379dafe2947ab26ea1aea5d241, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Spear

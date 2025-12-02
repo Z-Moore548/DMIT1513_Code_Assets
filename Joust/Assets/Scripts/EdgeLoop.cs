@@ -22,23 +22,26 @@ public class EdgeLoop : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        switch (trig)
+        if(other.gameObject.tag == "Player")
         {
-            case Which.Top:
-            other.transform.position = new Vector3(other.transform.position.x,-8,other.transform.position.z);
-            break;
-            case Which.Bot:
-            other.transform.position = new Vector3(other.transform.position.x,19,other.transform.position.z);
-            break;
-            case Which.Left:
-            other.transform.position = new Vector3(other.transform.position.x,other.transform.position.y,-22);
-            break;
-            case Which.Right:
-            other.transform.position = new Vector3(other.transform.position.x,other.transform.position.y,21);
-            break;
-            default:
-            other.transform.position = new Vector3(other.transform.position.x,0,0);
-            break;
+            switch (trig)
+            {
+                case Which.Top:
+                other.transform.position = new Vector3(other.transform.position.x,-8,other.transform.position.z);
+                break;
+                case Which.Bot:
+                other.transform.position = new Vector3(other.transform.position.x,19,other.transform.position.z);
+                break;
+                case Which.Left:
+                other.transform.position = new Vector3(other.transform.position.x,other.transform.position.y,-22);
+                break;
+                case Which.Right:
+                other.transform.position = new Vector3(other.transform.position.x,other.transform.position.y,21);
+                break;
+                default:
+                other.transform.position = new Vector3(other.transform.position.x,0,0);
+                break;
+            }
         }
     }
 }

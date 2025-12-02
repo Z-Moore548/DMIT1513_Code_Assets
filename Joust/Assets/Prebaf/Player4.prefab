@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 2764302668853151599}
   - component: {fileID: 4207466135447880139}
   - component: {fileID: 4031540114718261937}
-  - component: {fileID: 8548595451712660547}
   m_Layer: 0
   m_Name: Chara
   m_TagString: Untagged
@@ -91,29 +90,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &8548595451712660547
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3244397645649338352}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4854940069885645883
 GameObject:
   m_ObjectHideFlags: 0
@@ -125,9 +101,10 @@ GameObject:
   - component: {fileID: 5663102383302739782}
   - component: {fileID: 9178604788673377432}
   - component: {fileID: 8637059507280968116}
+  - component: {fileID: 7157313945076133560}
   m_Layer: 0
   m_Name: Player4
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -162,6 +139,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   ostrich: {fileID: 8578133150988564324}
+  spawn: {fileID: 0}
   speed: 10
   jumpForce: 500
   dashForce: 700
@@ -179,7 +157,7 @@ Rigidbody:
   m_GameObject: {fileID: 4854940069885645883}
   serializedVersion: 5
   m_Mass: 1
-  m_LinearDamping: 0
+  m_LinearDamping: 1
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -195,8 +173,29 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!65 &7157313945076133560
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4854940069885645883}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2, y: 2.3, z: 1.65}
+  m_Center: {x: 0, y: 1.15, z: 0}
 --- !u!1001 &3452412094929764630
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -264,13 +263,57 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1207145758441076341, guid: c8f328ffdc9cd3646ab8b4c340edbbba, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8059678586849883627}
+    - targetCorrespondingSourceObject: {fileID: 1207145758441076341, guid: c8f328ffdc9cd3646ab8b4c340edbbba, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1815475103846007446}
   m_SourcePrefab: {fileID: 100100000, guid: c8f328ffdc9cd3646ab8b4c340edbbba, type: 3}
 --- !u!4 &3774608597460364761 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1984807636101475535, guid: c8f328ffdc9cd3646ab8b4c340edbbba, type: 3}
   m_PrefabInstance: {fileID: 3452412094929764630}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &4551391179424593763 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1207145758441076341, guid: c8f328ffdc9cd3646ab8b4c340edbbba, type: 3}
+  m_PrefabInstance: {fileID: 3452412094929764630}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &8059678586849883627
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4551391179424593763}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.053446, y: 0.7126505, z: 0.58558726}
+  m_Center: {x: -0.3047197, y: 0.28674802, z: 0.09991455}
+--- !u!114 &1815475103846007446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4551391179424593763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e5947379dafe2947ab26ea1aea5d241, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Spear
 --- !u!1001 &8920170121979349557
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -326,37 +369,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 4bcc953d7edde084cb75368836459400, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 7252592031250453074}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4bcc953d7edde084cb75368836459400, type: 3}
 --- !u!1 &8578133150988564324 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 4bcc953d7edde084cb75368836459400, type: 3}
   m_PrefabInstance: {fileID: 8920170121979349557}
   m_PrefabAsset: {fileID: 0}
---- !u!65 &7252592031250453074
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8578133150988564324}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 4.949456, y: 12.7180605, z: 9.26609}
-  m_Center: {x: 0.001594305, y: 6.318414, z: -0.18498802}
 --- !u!4 &8953285846650105310 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4bcc953d7edde084cb75368836459400, type: 3}

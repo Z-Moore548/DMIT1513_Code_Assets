@@ -104,7 +104,7 @@ GameObject:
   - component: {fileID: 1868732712781726109}
   m_Layer: 0
   m_Name: Player1
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -138,6 +138,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   ostrich: {fileID: 6870873509043310509}
+  spawn: {fileID: 0}
   speed: 10
   jumpForce: 500
   dashForce: 700
@@ -192,8 +193,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2, y: 2.3092756, z: 1.6522843}
-  m_Center: {x: 0, y: 1.1546378, z: -0.047103465}
+  m_Size: {x: 2, y: 2.3, z: 1.65}
+  m_Center: {x: 0, y: 1.15, z: 0}
 --- !u!1001 &3757827831370268070
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -261,8 +262,52 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1207145758441076341, guid: c8f328ffdc9cd3646ab8b4c340edbbba, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3175989250134800908}
+    - targetCorrespondingSourceObject: {fileID: 1207145758441076341, guid: c8f328ffdc9cd3646ab8b4c340edbbba, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2976342204732001575}
   m_SourcePrefab: {fileID: 100100000, guid: c8f328ffdc9cd3646ab8b4c340edbbba, type: 3}
+--- !u!1 &2659050310749211603 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1207145758441076341, guid: c8f328ffdc9cd3646ab8b4c340edbbba, type: 3}
+  m_PrefabInstance: {fileID: 3757827831370268070}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &3175989250134800908
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2659050310749211603}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.1384177, y: 0.75409496, z: 0.59772587}
+  m_Center: {x: -0.3213862, y: 0.2660285, z: 0.1884219}
+--- !u!114 &2976342204732001575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2659050310749211603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e5947379dafe2947ab26ea1aea5d241, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Spear
 --- !u!4 &3435411470000132457 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1984807636101475535, guid: c8f328ffdc9cd3646ab8b4c340edbbba, type: 3}
