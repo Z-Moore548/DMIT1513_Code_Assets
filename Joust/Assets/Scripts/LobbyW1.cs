@@ -13,11 +13,14 @@ public class LobbyW1 : MonoBehaviour
     [SerializeField] List<GameObject> playerObjects;
 
     [SerializeField] PlayerInputManager playerInputManager;
+    GameManager gameManager;
+    [SerializeField]Timer timer;
 
     // Start is called before the first frame update
     void Start()
     {
         gamepadManager = GameObject.Find("GamepadManager").GetComponent<GamepadManager>();
+        gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -55,11 +58,13 @@ public class LobbyW1 : MonoBehaviour
 
     public void StartGame()
     {
+        gameManager.ResetScores();
         for (int i = 0; i < gamepadManager.PlayerCount(); i++)
         {
             playerObjects[i].GetComponent<PlayerController>().SetGamepadID(gamepadManager.PlayerStatus(i));
             playerObjects[i].SetActive(true);
         }
         gameObject.SetActive(false);
+        timer.StartTimer();
     }
 }

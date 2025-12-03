@@ -7,6 +7,7 @@ public class Spear : MonoBehaviour
         if(other.gameObject.tag == "Player")
         {
             other.gameObject.GetComponent<PlayerController>().Killed();
+            gameObject.GetComponentInParent<PlayerController>().Score();
         }
     }
 }

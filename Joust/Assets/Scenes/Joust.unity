@@ -1532,7 +1532,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   timer: {fileID: 1787889474}
   gameManager: {fileID: 1333356403}
-  startTime: 2
+  startTime: 60
   currentTime: 0
   timerActive: 0
   scoresText:
@@ -1682,7 +1682,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &798189481
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1708,6 +1708,7 @@ MonoBehaviour:
   - {fileID: 1806489412}
   - {fileID: 231558507}
   playerInputManager: {fileID: 0}
+  timer: {fileID: 692075185}
 --- !u!4 &798189482
 Transform:
   m_ObjectHideFlags: 0
@@ -2521,7 +2522,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c5e46b7aab82f44facaffdd6b92ee7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  scores: 00000000000000000000000000000000
+  scores: 0000000000000000000000000000000000000000
 --- !u!4 &1333356405
 Transform:
   m_ObjectHideFlags: 0
@@ -3354,7 +3355,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1787889474}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 5.28}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

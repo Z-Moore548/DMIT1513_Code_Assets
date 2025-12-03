@@ -9,10 +9,10 @@ public class Results : MonoBehaviour
     void Start()
     {
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
-        first = -1;
-        second = -1;
-        third = -1;
-        fourth = -1;
+        first = 4;
+        second = 4;
+        third = 4;
+        fourth = 4;
         GetResults();
     }
 
@@ -41,7 +41,7 @@ public class Results : MonoBehaviour
         }
         for (int i = 0; i < gameManager.Scores.Length; i++)//figure out fourth
         {
-            if(gameManager.Scores[i] > gameManager.Scores[third] && i != first && i != second && i != third)
+            if(gameManager.Scores[i] < gameManager.Scores[third] && i != third && i != 4)
             {
                 fourth = i;
             }
@@ -54,7 +54,6 @@ public class Results : MonoBehaviour
         {
             if(i == first)
             {
-                Debug.Log(i);
                 players[i].transform.position = podiumPlaces[0].transform.position;
             }
             if(i == second)

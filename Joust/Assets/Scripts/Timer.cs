@@ -49,11 +49,11 @@ public class Timer : MonoBehaviour
         timer.GetComponent<TMP_Text>().text = $"{seconds}";
     }
 
-    void PauseTimer()
+    public void PauseTimer()
     {
         timerActive = false;
     }
-    void StartTimer()
+    public void StartTimer()
     {
         timerActive = true;
     }

@@ -57,6 +57,13 @@ public class GameManager : MonoBehaviour
         Scores[slot]++;
         
     }
+    public void ResetScores()
+    {
+        for (int i = 0; i < scores.Length; i++)
+        {
+            Scores[i] = 0;
+        }
+    } 
     public void EndGame()
     {
         SceneManager.LoadScene("Results");

@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float speed, jumpForce, dashForce;
     [SerializeField] int gamepadID, playerIndex;
 
+    GameManager gameManager;
     Rigidbody rBody;
 
     [SerializeField]float left, right, zValue;
@@ -16,6 +17,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rBody = GetComponent<Rigidbody>();
+        gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         flap = false;
         dash = false;
         facingRight = false;
@@ -94,11 +96,13 @@ public class PlayerController : MonoBehaviour
         // set the gamepad ID that the object should be linked to.
         gamepadID = id;
     }
-
+    public void Score()
+    {
+        gameManager.UpdateScores(playerIndex);
+    }
     
     public void Killed()
     {
-        Debug.Log("BLARG");
         transform.position = new Vector3(10,0,0);
         StartCoroutine(Respawn());
     }
