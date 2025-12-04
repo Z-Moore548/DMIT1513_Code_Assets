@@ -1221,7 +1221,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1231478251}
         m_TargetAssemblyTypeName: UIController, Assembly-CSharp
-        m_MethodName: ReturnToMainMenu
+        m_MethodName: PlayAgain
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

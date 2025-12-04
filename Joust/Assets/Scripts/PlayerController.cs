@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     Rigidbody rBody;
 
     [SerializeField]float left, right, zValue;
-    bool flap, dash, dashCool, facingRight;
+    bool flap, dash, dashCool, facingRight, invincible, falling;
     
     void Start()
     {
@@ -53,6 +53,12 @@ public class PlayerController : MonoBehaviour
                 dash = true;
                 dashCool = false;
             }
+            if (Gamepad.all[playerIndex].yButton.wasPressedThisFrame)
+            {
+                falling = true;
+            }
+            
+            
             
             #endregion
         }
@@ -68,7 +74,7 @@ public class PlayerController : MonoBehaviour
         }
         if (dash)
         {
-            rBody.constraints = RigidbodyConstraints.FreezePositionY;
+            //rBody.constraints = RigidbodyConstraints.FreezePositionY;
             if (!facingRight)
             {
                 rBody.AddForce(Vector3.forward * dashForce * Time.fixedDeltaTime, ForceMode.Impulse);
@@ -79,6 +85,11 @@ public class PlayerController : MonoBehaviour
             }
             StartCoroutine(DashCooldown());
             dash = false;
+        }
+        if (falling)
+        {
+            rBody.AddForce(Vector3.down * jumpForce * Time.fixedDeltaTime, ForceMode.Impulse);
+            falling = false;
         }
     }
     void LateUpdate()
@@ -103,8 +114,16 @@ public class PlayerController : MonoBehaviour
     
     public void Killed()
     {
-        transform.position = new Vector3(10,0,0);
-        StartCoroutine(Respawn());
+        if (invincible)
+        {
+            
+        }
+        else
+        {
+            transform.position = new Vector3(10,0,0);
+            StartCoroutine(Respawn());
+        }
+        
     }
 
 
@@ -112,13 +131,16 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(.3f);
         rBody.constraints = RigidbodyConstraints.FreezeRotation;
-        rBody.linearVelocity = new Vector3(0, rBody.linearVelocity.y, 0);
-        yield return new WaitForSeconds(.5f);
+        //rBody.linearVelocity = new Vector3(0, rBody.linearVelocity.y, 0);
+        yield return new WaitForSeconds(.3f);
         dashCool = true;
     }
     IEnumerator Respawn()
     {
         yield return new WaitForSeconds(2);
         transform.position = spawn.transform.position;
+        invincible = true;
+        yield return new WaitForSeconds(2);
+        invincible = false;
     }
 }

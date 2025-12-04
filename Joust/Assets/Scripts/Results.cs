@@ -41,7 +41,7 @@ public class Results : MonoBehaviour
         }
         for (int i = 0; i < gameManager.Scores.Length; i++)//figure out fourth
         {
-            if(gameManager.Scores[i] < gameManager.Scores[third] && i != third && i != 4)
+            if(gameManager.Scores[i] < gameManager.Scores[third] && gameManager.Scores[i] > gameManager.Scores[fourth] && i != third)
             {
                 fourth = i;
             }
