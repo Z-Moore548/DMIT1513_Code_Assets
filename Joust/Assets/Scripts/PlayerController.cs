@@ -1,4 +1,6 @@
 using System.Collections;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -26,6 +28,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        
         if (gamepadID != -1)
         {
             #region Controller Input for Gamepad
@@ -121,10 +124,12 @@ public class PlayerController : MonoBehaviour
         else
         {
             transform.position = new Vector3(10,0,0);
+            invincible = true;
             StartCoroutine(Respawn());
         }
         
     }
+    
 
 
     IEnumerator DashCooldown()

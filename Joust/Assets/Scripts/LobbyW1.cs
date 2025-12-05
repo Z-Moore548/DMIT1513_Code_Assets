@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class LobbyW1 : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class LobbyW1 : MonoBehaviour
     [SerializeField] PlayerInputManager playerInputManager;
     GameManager gameManager;
     [SerializeField]Timer timer;
+    [SerializeField] GameObject start;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -49,10 +52,12 @@ public class LobbyW1 : MonoBehaviour
         if (gamepadManager.PlayerCount() == 0)
         {
             startButton.interactable = false;
+            EventSystem.current.SetSelectedGameObject(null);
         }
         else
         {
             startButton.interactable = true;
+            EventSystem.current.SetSelectedGameObject(start);
         }
     }
 

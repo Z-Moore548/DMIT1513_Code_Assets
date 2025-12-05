@@ -30,6 +30,10 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        if (Keyboard.current.escapeKey.wasPressedThisFrame)
+        {
+            Application.Quit();
+        }
         if (Keyboard.current.kKey.wasPressedThisFrame)
         {
             UpdateScores(0);

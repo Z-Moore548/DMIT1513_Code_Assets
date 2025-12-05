@@ -1,19 +1,11 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class UIController : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [SerializeField] Animator anim;
+    [SerializeField] GameObject playButton, backButton;
     #region Results Screen
     public void ReturnToMainMenu()
     {
@@ -31,7 +23,15 @@ public class UIController : MonoBehaviour
     }
     public void Controls()
     {
-        
+        EventSystem.current.SetSelectedGameObject(null);
+        anim.SetBool("Controls", true);
+        EventSystem.current.SetSelectedGameObject(backButton);
+    }
+    public void ControlsGone()
+    {
+        EventSystem.current.SetSelectedGameObject(null);
+        anim.SetBool("Controls", false);
+        EventSystem.current.SetSelectedGameObject(playButton);
     }
     public void Quit()
     {

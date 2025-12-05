@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -6,6 +7,7 @@ public class GamepadManager : MonoBehaviour
 {
     [SerializeField] List<int> gamepadID;
     int gamepadsConnected;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -16,6 +18,7 @@ public class GamepadManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+    
         // If a gamepad got disconnected then find the player object that was connected to it
         if (Gamepad.all.Count < gamepadsConnected)
         {
