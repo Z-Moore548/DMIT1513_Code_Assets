@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 
 public class Results : MonoBehaviour
@@ -68,6 +69,57 @@ public class Results : MonoBehaviour
             {
                 players[i].transform.position = podiumPlaces[3].transform.position;
             }
+        }
+        PlaceTies();
+    }
+    void PlaceTies()
+    {
+        bool tiedFirst = false;
+        bool tiedSecond = false;
+        bool tiedThird = false;
+        for (int i = 0; i < players.Length; i++)
+        {
+            if(i != first && gameManager.Scores[i] == gameManager.Scores[first])
+            {
+                
+                if(tiedFirst)
+                {
+                    players[i].transform.position = new Vector3(podiumPlaces[0].transform.position.x, podiumPlaces[0].transform.position.y + 4, podiumPlaces[0].transform.position.z);
+                    
+                }
+                else if (!tiedFirst)
+                {
+                    players[i].transform.position = new Vector3(podiumPlaces[0].transform.position.x, podiumPlaces[0].transform.position.y + 2, podiumPlaces[0].transform.position.z);
+                    tiedFirst = true;
+                }
+
+            }
+            if(i != second && gameManager.Scores[i] == gameManager.Scores[second] && second != 4)
+            {
+                
+                if(tiedSecond)
+                {
+                    players[i].transform.position = new Vector3(podiumPlaces[1].transform.position.x, podiumPlaces[1].transform.position.y + 4, podiumPlaces[1].transform.position.z);  
+                }
+                else if (!tiedSecond)
+                {
+                    players[i].transform.position = new Vector3(podiumPlaces[1].transform.position.x, podiumPlaces[1].transform.position.y + 2, podiumPlaces[1].transform.position.z);
+                    tiedSecond = true; 
+                }
+            }
+            if(i != third && gameManager.Scores[i] == gameManager.Scores[third] && third != 4)
+            {
+                
+                if(tiedThird)
+                {
+                    players[i].transform.position = new Vector3(podiumPlaces[2].transform.position.x, podiumPlaces[2].transform.position.y + 4, podiumPlaces[2].transform.position.z);
+                    
+                }
+                else if (!tiedThird)
+                {
+                    players[i].transform.position = new Vector3(podiumPlaces[2].transform.position.x, podiumPlaces[2].transform.position.y + 2, podiumPlaces[2].transform.position.z);
+                    tiedThird = true;
+                }            }
         }
     }
 }

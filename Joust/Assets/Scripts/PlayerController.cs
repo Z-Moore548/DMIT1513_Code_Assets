@@ -1,12 +1,10 @@
 using System.Collections;
-using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] GameObject ostrich, spawn;
+    [SerializeField] GameObject ostrich, spawn, SFX;
     [SerializeField] float speed, jumpForce, dashForce;
     [SerializeField] int gamepadID, playerIndex;
 
@@ -123,6 +121,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
+            SFX.GetComponent<SFXController>().PlaySquawk();
             transform.position = new Vector3(10,0,0);
             invincible = true;
             StartCoroutine(Respawn());
