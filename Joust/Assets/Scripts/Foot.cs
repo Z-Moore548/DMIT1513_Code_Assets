@@ -6,8 +6,13 @@ public class Foot : MonoBehaviour
     {
         if(other.gameObject.tag == "Player")
         {
+            if(other.gameObject.GetComponent<PlayerController>().Invincible != true)
+            {
+                Debug.Log("footKilled");
+                gameObject.GetComponentInParent<PlayerController>().Score();
+            }
             other.gameObject.GetComponent<PlayerController>().Killed();
-            gameObject.GetComponentInParent<PlayerController>().Score();
+            
         }
     }
 }

@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     [SerializeField] int[] scores = new int[4];
+    
 
     public int[] Scores { get => scores; set => scores = value; }
 
@@ -50,6 +51,7 @@ public class GameManager : MonoBehaviour
         {
             UpdateScores(3);
         }
+        
         // for (int i = 0; i < scoresText.Length; i++)
         // {
         //     scoresText[i].text = $"{scores[i]}";

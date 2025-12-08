@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 public class UIController : MonoBehaviour
 {
     [SerializeField] Animator anim;
-    [SerializeField] GameObject playButton, backButton;
+    [SerializeField] GameObject playButton, backButton, resumeButton, lobby;
     #region Results Screen
     public void ReturnToMainMenu()
     {
@@ -39,6 +39,13 @@ public class UIController : MonoBehaviour
     }
     #endregion
     #region Pause Screen
-
+    public void Resume()
+    {
+        lobby.GetComponent<LobbyW1>().ResumeGame();
+    }
+    public void BackMenu()
+    {
+        lobby.GetComponent<LobbyW1>().BackMenu();
+    }
     #endregion
 }

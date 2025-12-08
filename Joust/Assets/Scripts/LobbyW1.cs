@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class LobbyW1 : MonoBehaviour
 {
@@ -16,7 +17,8 @@ public class LobbyW1 : MonoBehaviour
     [SerializeField] PlayerInputManager playerInputManager;
     GameManager gameManager;
     [SerializeField]Timer timer;
-    [SerializeField] GameObject start;
+    [SerializeField] GameObject start, ConncetMenu, pauseMenu, resume;
+    bool gameStarted;
     
 
     // Start is called before the first frame update
@@ -24,6 +26,8 @@ public class LobbyW1 : MonoBehaviour
     {
         gamepadManager = GameObject.Find("GamepadManager").GetComponent<GamepadManager>();
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+        gameStarted = false;
+        Time.timeScale = 1;
     }
 
     // Update is called once per frame
@@ -49,27 +53,72 @@ public class LobbyW1 : MonoBehaviour
             }
         }
 
-        if (gamepadManager.PlayerCount() == 0)
+        if (gamepadManager.PlayerCount() == 0 && !gameStarted)
         {
             startButton.interactable = false;
             EventSystem.current.SetSelectedGameObject(null);
         }
         else
         {
-            startButton.interactable = true;
-            EventSystem.current.SetSelectedGameObject(start);
+            if (!gameStarted)
+            {
+                startButton.interactable = true;
+                EventSystem.current.SetSelectedGameObject(start);
+            }
+            
         }
+        if (gameStarted)
+        {
+            if (Keyboard.current.tabKey.wasPressedThisFrame || Gamepad.current.startButton.wasPressedThisFrame)
+            {
+                timer.PauseTimer();
+                Time.timeScale = 0;
+                EventSystem.current.SetSelectedGameObject(null);
+                pauseMenu.SetActive(true);
+                EventSystem.current.SetSelectedGameObject(resume);
+                for (int i = 0; i < gamepadManager.PlayerCount(); i++)
+                {
+                    playerObjects[i].GetComponent<PlayerController>().Paused = true;
+                }
+                
+            }
+        }
+        
     }
 
     public void StartGame()
     {
         gameManager.ResetScores();
+        gameStarted = true;
         for (int i = 0; i < gamepadManager.PlayerCount(); i++)
         {
             playerObjects[i].GetComponent<PlayerController>().SetGamepadID(gamepadManager.PlayerStatus(i));
             playerObjects[i].SetActive(true);
         }
-        gameObject.SetActive(false);
+        ConncetMenu.SetActive(false);
         timer.StartTimer();
+    }
+    public void ResumeGame()
+    {
+        Time.timeScale = 1;
+        EventSystem.current.SetSelectedGameObject(null);
+        pauseMenu.SetActive(false);
+        for (int i = 0; i < gamepadManager.PlayerCount(); i++)
+        {
+            playerObjects[i].GetComponent<PlayerController>().Paused = false;
+        }
+        timer.StartTimer();
+    }
+    public void BackMenu()
+    {
+        Time.timeScale = 1;
+        EventSystem.current.SetSelectedGameObject(null);
+        pauseMenu.SetActive(false);
+        for (int i = 0; i < gamepadManager.PlayerCount(); i++)
+        {
+            playerObjects[i].GetComponent<PlayerController>().Paused = false;
+        }
+        timer.StartTimer();
+        SceneManager.LoadScene("MainMenu");
     }
 }

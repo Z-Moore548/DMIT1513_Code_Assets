@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
@@ -12,8 +13,11 @@ public class PlayerController : MonoBehaviour
     Rigidbody rBody;
 
     [SerializeField]float left, right, zValue;
-    bool flap, dash, dashCool, facingRight, invincible, falling;
-    
+    bool flap, dash, dashCool, facingRight, invincible, falling, paused;
+
+    public bool Invincible { get => invincible; set => invincible = value; }
+    public bool Paused { get => paused; set => paused = value; }
+
     void Start()
     {
         rBody = GetComponent<Rigidbody>();
@@ -22,12 +26,14 @@ public class PlayerController : MonoBehaviour
         dash = false;
         facingRight = false;
         dashCool = true;
+        invincible = false;
+        paused = false;
     }
 
     void Update()
     {
         
-        if (gamepadID != -1)
+        if (gamepadID != -1 && !paused)
         {
             #region Controller Input for Gamepad
             
@@ -62,6 +68,8 @@ public class PlayerController : MonoBehaviour
             
             
             #endregion
+
+        
         }
     }
     void FixedUpdate()
@@ -115,7 +123,7 @@ public class PlayerController : MonoBehaviour
     
     public void Killed()
     {
-        if (invincible)
+        if (Invincible)
         {
             
         }
@@ -123,7 +131,7 @@ public class PlayerController : MonoBehaviour
         {
             SFX.GetComponent<SFXController>().PlaySquawk();
             transform.position = new Vector3(10,0,0);
-            invincible = true;
+            Invincible = true;
             StartCoroutine(Respawn());
         }
         
@@ -143,8 +151,8 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(2);
         transform.position = spawn.transform.position;
-        invincible = true;
+        Invincible = true;
         yield return new WaitForSeconds(2);
-        invincible = false;
+        Invincible = false;
     }
 }
