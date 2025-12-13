@@ -31,26 +31,26 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (Keyboard.current.escapeKey.wasPressedThisFrame)
-        {
-            Application.Quit();
-        }
-        if (Keyboard.current.kKey.wasPressedThisFrame)
-        {
-            UpdateScores(0);
-        }
-        if (Keyboard.current.jKey.wasPressedThisFrame)
-        {
-            UpdateScores(1);
-        }
-        if (Keyboard.current.lKey.wasPressedThisFrame)
-        {
-            UpdateScores(2);
-        }
-        if (Keyboard.current.pKey.wasPressedThisFrame)
-        {
-            UpdateScores(3);
-        }
+        // if (Keyboard.current.escapeKey.wasPressedThisFrame)
+        // {
+        //     Application.Quit();
+        // }
+        // if (Keyboard.current.kKey.wasPressedThisFrame)
+        // {
+        //     UpdateScores(0);
+        // }
+        // if (Keyboard.current.jKey.wasPressedThisFrame)
+        // {
+        //     UpdateScores(1);
+        // }
+        // if (Keyboard.current.lKey.wasPressedThisFrame)
+        // {
+        //     UpdateScores(2);
+        // }
+        // if (Keyboard.current.pKey.wasPressedThisFrame)
+        // {
+        //     UpdateScores(3);
+        // }
         
         // for (int i = 0; i < scoresText.Length; i++)
         // {

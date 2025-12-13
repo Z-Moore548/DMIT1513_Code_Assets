@@ -1,11 +1,13 @@
 using System.Linq;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Results : MonoBehaviour
 {
     GameManager gameManager;
     [SerializeField] int first, second, third, fourth;
     [SerializeField] GameObject[] players, podiumPlaces;
+    [SerializeField] GameObject again;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -15,6 +17,12 @@ public class Results : MonoBehaviour
         third = 4;
         fourth = 4;
         GetResults();
+        EventSystem.current.SetSelectedGameObject(null);
+        Invoke("AllowButtons", 3f);
+    }
+    void AllowButtons()
+    {
+        EventSystem.current.SetSelectedGameObject(again);
     }
 
     void GetResults()

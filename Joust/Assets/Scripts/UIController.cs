@@ -1,11 +1,17 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 
 public class UIController : MonoBehaviour
 {
     [SerializeField] Animator anim;
     [SerializeField] GameObject playButton, backButton, resumeButton, lobby;
+    void Start()
+    {
+        Cursor.visible = false;
+        Time.timeScale = 1;
+    }
     #region Results Screen
     public void ReturnToMainMenu()
     {

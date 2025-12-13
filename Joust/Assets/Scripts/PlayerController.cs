@@ -5,9 +5,10 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] GameObject ostrich, spawn, SFX;
+    [SerializeField] GameObject ostrich, spawn, SFX, halo;
     [SerializeField] float speed, jumpForce, dashForce;
     [SerializeField] int gamepadID, playerIndex;
+    [SerializeField] GameObject deathParticle;
 
     GameManager gameManager;
     Rigidbody rBody;
@@ -32,7 +33,14 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        
+        if (invincible)
+        {
+            halo.SetActive(true);
+        }
+        else
+        {
+            halo.SetActive(false);
+        }
         if (gamepadID != -1 && !paused)
         {
             #region Controller Input for Gamepad
@@ -129,6 +137,8 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
+            deathParticle.transform.position = new Vector3(transform.position.x, transform.position.y + 1.5f, transform.position.z);
+            deathParticle.GetComponent<ParticleSystem>().Play();
             SFX.GetComponent<SFXController>().PlaySquawk();
             transform.position = new Vector3(10,0,0);
             Invincible = true;
@@ -150,6 +160,7 @@ public class PlayerController : MonoBehaviour
     IEnumerator Respawn()
     {
         yield return new WaitForSeconds(2);
+        SFX.GetComponent<SFXController>().PlayPop();
         transform.position = spawn.transform.position;
         Invincible = true;
         yield return new WaitForSeconds(2);
