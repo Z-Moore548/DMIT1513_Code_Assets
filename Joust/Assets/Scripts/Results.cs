@@ -18,7 +18,7 @@ public class Results : MonoBehaviour
         fourth = 4;
         GetResults();
         EventSystem.current.SetSelectedGameObject(null);
-        Invoke("AllowButtons", 3f);
+        Invoke("AllowButtons", 2f);
     }
     void AllowButtons()
     {
